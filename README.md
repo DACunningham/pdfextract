@@ -1,0 +1,1 @@
+curl -X POST -F 'file=@C:\Users\Dexter\source\repos\pdfextract\Statement_for_01_September_2024_to_30_September_2024.pdf' http://localhost:7071/api/pdfextract
