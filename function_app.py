@@ -4,30 +4,15 @@ import json
 import logging
 import pdfplumber
 import io
+from call_chat import call_openai
 
 app = func.FunctionApp()
 
 
 @app.route(route="pdfextract", auth_level=func.AuthLevel.FUNCTION)
 def pdfextract(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info("Python HTTP trigger function processed a request.")
+    logging.info("pdfextract HTTP trigger function starting to process a request.")
 
-    # name = req.params.get('name')
-    # if not name:
-    #     try:
-    #         req_body = req.get_json()
-    #     except ValueError:
-    #         pass
-    #     else:
-    #         name = req_body.get('name')
-
-    # if name:
-    #     return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
-    # else:
-    #     return func.HttpResponse(
-    #          "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-    #          status_code=200
-    #     )
     if not req.files:
         return func.HttpResponse("Malformed request, missing 'files'", status_code=400)
     file = req.files.get("file")
@@ -42,6 +27,9 @@ def pdfextract(req: func.HttpRequest) -> func.HttpResponse:
             for page in pdf.pages:
                 text += page.extract_text()
 
-        return func.HttpResponse(text, mimetype="text/plain")
+        result = call_openai(text)
+
+        # return func.HttpResponse(text, mimetype="text/plain")
+        return func.HttpResponse(result, mimetype="text/plain")
     except Exception as e:
         return func.HttpResponse(f"An error occurred: {str(e)}", status_code=500)
