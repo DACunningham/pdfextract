@@ -24,8 +24,3 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(text, mimetype="text/plain")
     except Exception as e:
         return func.HttpResponse(f"An error occurred: {str(e)}", status_code=500)
-
-
-# if __name__ == "__main__":
-#     # result = extract_data_from_pdf("fd statement 3793 31122024.pdf")
-#     result = main("Statement_for_01_September_2024_to_30_September_2024.pdf")

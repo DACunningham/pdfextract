@@ -1,10 +1,7 @@
 import azure.functions as func
-import datetime
-import json
 import logging
 import pdfplumber
 import io
-from call_chat import call_openai
 
 app = func.FunctionApp()
 
@@ -27,9 +24,6 @@ def pdfextract(req: func.HttpRequest) -> func.HttpResponse:
             for page in pdf.pages:
                 text += page.extract_text()
 
-        result = call_openai(text)
-
-        # return func.HttpResponse(text, mimetype="text/plain")
-        return func.HttpResponse(result, mimetype="text/plain")
+        return func.HttpResponse(text, mimetype="text/plain")
     except Exception as e:
         return func.HttpResponse(f"An error occurred: {str(e)}", status_code=500)
