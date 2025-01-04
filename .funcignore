@@ -1,3 +1,5 @@
 
-
+*.pdf
+/output_bin
+/pdf_examples
 .venv

@@ -177,3 +177,4 @@ pyrightconfig.json
 *.pdf
 .python_packages
 /output_bin
+/pdf_examples

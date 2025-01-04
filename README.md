@@ -18,3 +18,17 @@ az storage account create --name mystorageaccount --location westus --resource-g
 
 az functionapp create --resource-group worthit20230810162505ResourceGroup --consumption-plan-location eastus --runtime python --runtime-version 3.11 --functions-version 4 --name pdfextract-202501032128 --storage-account pdfextract --os-type Linux
 ```
+
+# Deployment Guide
+
+1. Run last step in deployment script (Once)
+
+1. Commit chages
+1. In vscode go to azure extension, pdfextract function app, RMB deploy function app
+1. RMB function once complete and copy URL
+
+# Remote Function Execution
+
+curl -X POST -F 'file=@C:\Users\Dexter\source\repos\pdfextract\pdf_examples\Zopa_January_2024.pdf' https://pdfextract-202501032128.azurewebsites.net/api/pdfextract?code=<insert-key-here>
+
+curl -H "x-functions-key: <insert-key-here>" -X POST -F 'file=@C:\Users\Dexter\source\repos\pdfextract\pdf_examples\Zopa_January_2024.pdf' https://pdfextract-202501032128.azurewebsites.net/api/pdfextract
