@@ -32,7 +32,7 @@ The following steps may need to be run after changes.
 1. `terraform plan`
 1. `terraform apply`
 1. Start Docker desktop
-1. Ensure you are in the root directory of the project then, to deploy the function, run `func azure functionapp publish pdfextract-app --python --build-native-deps`
+1. Ensure you are in the root directory of the project then, to deploy the function, run `func azure functionapp publish pdfextract-app --python --build-native-deps --build remote`
 
 
 # Remote Function Execution
