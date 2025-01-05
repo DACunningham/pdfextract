@@ -4,15 +4,6 @@ The PDF Extract app extracts all text data from a PDF, including data within tab
 # Example Local API requests
 curl -X POST -F 'file=@C:\Users\Dexter\source\repos\pdfextract\pdf_examples\Statement_for_01_September_2024_to_30_September_2024.pdf' http://localhost:7071/api/pdfextract
 
-# Deployment Script
-``` 
-az group create --name MyResourceGroup --location westus
-
-az storage account create --name mystorageaccount --location westus --resource-group MyResourceGroup --sku Standard_LRS
-
-az functionapp create --resource-group pdfextract --consumption-plan-location uksouth --runtime python --runtime-version 3.11 --functions-version 4 --name pdfextract-202501042245 --storage-account pdfextract202501041224 --os-type Linux
-```
-
 # Deployment Guide
 
 Run these steps one time on project startup
